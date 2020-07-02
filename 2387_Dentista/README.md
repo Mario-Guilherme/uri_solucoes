@@ -5,4 +5,4 @@ Outras possíveis soluções:
    
    1°) Utilizando ´Vector´ e ´Pair´,aí não precisaria fazer o struct nem a função de ordenação.
    
-   2°) Utilizando ´Priority Queue´,mas precisaria inverter a prioridade que seria O(n)(Talvez a solução mais rápida).
+   2°) Utilizando ´Priority Queue´,mas precisaria inverter a prioridade da fila que seria O(n)(Talvez a solução mais rápida).
