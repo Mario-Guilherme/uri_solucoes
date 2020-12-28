@@ -1,41 +1,40 @@
 #include<iostream>
 #include<cstdio>
 #include<string>
-#include<cstring>
-#define MAXN 51
 #define MAX(x,y) (x>=y? x : y)
+#define MAXN 102
 using namespace std;
 
-int tabela[MAXN][MAXN],resultado;
-string s1, s2;
-
-int lcs(int a, int b){
-
-
-	if(tabela[a][b]>=0) return tabela[a][b];
-
-	if(a==0||b==0) return tabela[a][b]=0;
-
-	if(s1[a-1]==s2[b-1])return tabela[a][b]=1+lcs(a-1,b-1);
-
-    tabela[a][b]= MAX(lcs(a,b-1), lcs(a-1,b));
+int lcs(string &s1, string &s2){
+    int tabela[MAXN][MAXN];
+    int resultado=0;
+    for(int i=0;i<=s1.size();i++){
+        for(int j=0;j<=s2.size();j++){
+            if(i==0||j==0) tabela[i][j]=0;
+            else{
+                if(s1[i-1]==s2[j-1]){
+                tabela[i][j]=tabela[i-1][j-1]+1;
+                resultado = MAX(resultado,tabela[i][j]);
+                }else{
+                    tabela[i][j]=0;
+                }
+            }
+        }
+    }
+    return resultado;
 }
 
-int main(){
+ int main(){
+    string s1,s2;
 
-    getline(cin, s1);
-    getchar();
-    getline(cin, s2);
+    while(getline(cin, s1)){
+        if(cin.eof()) break;
 
-    if(cin.eof()) return 0;
+        getline(cin, s2);
 
-    memset(tabela,-1,sizeof(tabela));
-    resultado=0;
+        printf("%d\n",lcs(s1,s2));
+    }
 
-    printf("%d\n",lcs(s1.length(), s2.length()));
+    return 0;
+ }
 
-    s1.clear();
-    s2.clear();
-	main();
-	return 0;
-}
